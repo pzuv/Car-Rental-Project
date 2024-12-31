@@ -1,0 +1,132 @@
+
+:root {
+  --primary-color: #101a4e;
+  --secondary-color: #6b8ce8;
+  --text-dark: #0f172a;
+  --text-light: #475569;
+  --bg-light: #f2f2f2;
+  --white: #ffffff;
+  --max-width: 1200px;
+  --gradient: linear-gradient(to bottom, #6b8ce8, #101a4e);
+}
+.profile img {
+    width: 50px; /* User photo size */
+    height: 50px; /* User photo size */
+    border-radius: 50%; /* Make it circular */
+  } 
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Mulish", sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.profile-container {
+  max-width: var(--max-width);
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 90%;
+}
+
+h1, h2 {
+  text-align: center;
+  color: var(--primary-color);
+}
+
+.user-info {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: var(--bg-light);
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-info p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  color: var(--text-dark);
+}
+
+.user-info p strong {
+  color: var(--secondary-color);
+}
+
+.user-rentals table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.user-rentals table thead {
+  background: var(--primary-color);
+  color: var(--white);
+}
+
+.user-rentals table th, .user-rentals table td {
+  text-align: center;
+  padding: 0.75rem;
+  font-size: 0.9rem;
+  border: 1px solid #ddd;
+}
+
+.user-rentals table tr:nth-child(even) {
+  background-color: var(--bg-light);
+}
+
+.user-rentals table tr:hover {
+  background-color: var(--secondary-color);
+  color: var(--white);
+}
+
+.user-rentals table th {
+  font-weight: 600;
+}
+
+
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 1rem;
+  }
+
+  .user-info p {
+    font-size: 0.9rem;
+  }
+
+  .user-rentals table th, .user-rentals table td {
+    font-size: 0.8rem;
+    padding: 0.5rem;
+  }
+}/* Button at bottom-right */
+#done-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: 0.5s;
+    cursor: pointer;
+  }
+  #done-btn:hover{
+    background-color: dodgerblue;
+}
+
+
+  

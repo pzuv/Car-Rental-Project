@@ -1,0 +1,61 @@
+create database carrental;
+CREATE TABLE Customers (
+    Name VARCHAR(255) NOT NULL,
+    CustomerID INT PRIMARY KEY AUTO_INCREMENT,
+    Passport_number varchar(100) NOT NULL,
+    Email VARCHAR(100) UNIQUE NOT NULL,
+    age INT NOT NULL,
+    Address TEXT NOT NULL,
+    PhoneNumber VARCHAR(20) NOT NULL,
+    PASSWORD VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Offices (
+    OfficeID INT AUTO_INCREMENT PRIMARY KEY,
+    Location VARCHAR(100)
+);
+
+CREATE TABLE Admin (
+ 	name VARCHAR(150) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    PASSWORD VARCHAR(255) NOT NULL,
+    OfficeID INT PRIMARY KEY AUTO_INCREMENT,
+    FOREIGN KEY (OfficeID) REFERENCES offices (OfficeID)
+);
+
+CREATE TABLE Car (
+    Year INT NOT NULL,
+    Status ENUM('Active', 'Out of Service', 'Rented') NOT NULL DEFAULT 'Active',
+    Car_Modle VARCHAR(150) NOT NULL,
+    Car_plate VARCHAR(20) NOT NULL PRIMARY KEY,
+    Car_type ENUM('SUV', 'Sport', 'Sedan', 'Electric') NOT NULL,
+    Car_price DECIMAL(10, 2) NOT NULL,
+    Car_detals TEXT NOT NULL,
+    Car_office INT NOT NULL,
+    Car_image VARCHAR(255) NOT NULL,
+    FOREIGN KEY (Car_office) REFERENCES Offices(OfficeID)
+);
+
+CREATE TABLE rent(
+    rent_ID INT PRIMARY KEY AUTO_INCREMENT,
+    office_ID INT NOT NULL ,
+    pickup_date DATE NOT NULL,
+    return_date DATE NOT NULL,
+    customer_ID INT NOT NULL,
+    car_plate VARCHAR(20) NOT NULL,
+    cost DECIMAL(10, 2) NOT NULL,
+    Status ENUM('Reserved', 'Picked Up', 'Returned', 'Cancelled','Confirmed') NOT NULL,
+    rent_created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (customer_ID) REFERENCES Customers(CustomerID),
+    FOREIGN KEY (car_plate) REFERENCES car(Car_plate),
+    FOREIGN KEY (office_ID) REFERENCES Offices(OfficeID)
+);
+
+CREATE TABLE payment (
+	PaymentID INT PRIMARY KEY AUTO_INCREMENT,
+    rent_ID INT NOT NULL,
+    PaymentDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    Amount DECIMAL(10, 2) NOT NULL,
+    PaymentMethod ENUM('Credit Card', 'Cash', 'Canceled') NOT NULL,
+    FOREIGN KEY (rent_ID) REFERENCES rent(rent_ID)
+);
